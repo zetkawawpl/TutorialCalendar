@@ -5,7 +5,7 @@ persistent table zcal_holiday_znk
 lock master
 with additional save
 //authorization master ( instance )
-//etag master <field_name>
+etag master changedat
 {
   create;
   update;
