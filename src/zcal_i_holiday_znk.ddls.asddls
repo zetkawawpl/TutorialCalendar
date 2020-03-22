@@ -6,6 +6,8 @@
 define root view ZCAL_I_HOLIDAY_ZNK
   as select from zcal_holiday_znk
   composition [0..*] of ZCAL_I_HOLITXT_ZNK as _HolidayTxt
+  association [0..1] to ZCAL_I_HOLITXT_ZNK as _DefaultText on  _DefaultText.holiday_id = $projection.holiday_id
+                                                           and _DefaultText.spras      = $session.system_language
 {
       @UI.facet: [
               {
@@ -42,6 +44,11 @@ define root view ZCAL_I_HOLIDAY_ZNK
       @UI.lineItem:   [ { position: 3 } ]
       //@Semantics.systemDateTime.lastChangedAt: true
       day_of_holiday,
+      @UI.fieldGroup: [ { qualifier: 'General',
+                    position: 4,
+                    label: 'Description' } ]
+      @UI.lineItem:   [ { position: 4, label: 'Description' } ]
+      _DefaultText.fcal_description as HolidayDescription,
       //@Semantics.systemDateTime.lastChangedAt: true
       changedat,
       _HolidayTxt
