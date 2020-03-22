@@ -1,0 +1,12 @@
+managed; // implementation in class zbp_cal_i_holiday_znk unique;
+
+define behavior for ZCAL_I_HOLIDAY_ZNK alias HolidayRoot
+persistent table zcal_holiday_znk
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}
