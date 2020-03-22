@@ -10,3 +10,11 @@ lock master
   update;
   delete;
 }
+
+define behavior for ZCAL_I_HOLITXT_ZNK alias HolidayText
+persistent table zcal_holitxt_znk
+lock dependent ( holiday_id = holiday_id )
+{
+  update;
+  delete;
+  field( readonly ) holiday_id; }
